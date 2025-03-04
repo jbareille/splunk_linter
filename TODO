@@ -1,0 +1,7 @@
+1 . List files that have to be linted
+2 . List syntax of each kind of files
+3 . List filename pattern for each kind of file
+4 . List file path pattern for each kind of files
+5 . Do one method to a specific syntax check and test it on 1 hardcoded file
+
+
