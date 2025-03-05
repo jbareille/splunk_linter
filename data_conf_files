@@ -1,0 +1,46 @@
+Documentation page for configuration files : https://docs.splunk.com/Documentation/Splunk/9.4.0/Admin/Configurationfilestructureandsyntax
+
+Configuration block MUST start with a stanza [].
+
+
+
+Rules :
+files can start with empty or commented lines
+Stanza (or section) stuff :
+[FAIL]  configuration before stanza declaration !
+[WARN]  empty stanza block
+[FAIL]  pattern of section pattern [example:<target_list>]. Can be 1 or 2 : between exampel and target_list
+[FAIL]  in [example:<target_list>], example is not [a-zA-Z0-9-_]
+[FAIL]  in [example:<target_list>], target_list is not [a-zA-Z0-9-_*?+/]+
+[FAIL]  any character before '['
+[FAIL]  only accept space and comments after ']'
+
+Config itself :
+[FAIL]  not in format "[a-zA-Z0-9-_]+ {0,1}="
+[WARN]  a variable is defined multiple times in the same perimeter
+
+
+Examples of configuration files found in the documentation :
+"""
+$SPLUNK_HOME/etc/system/local/props.conf
+```
+[source::/opt/Locke/Logs/error*]
+sourcetype = fatal-error
+```
+
+$SPLUNK_HOME/etc/apps/t2rss/local/props.conf
+```
+[source::/opt/Locke/Logs/error*]
+sourcetype = t2rss-error
+SHOULD_LINEMERGE = True
+BREAK_ONLY_BEFORE_DATE = True
+```
+leading to this merge conf
+```
+[source::/opt/Locke/Logs/error*]
+sourcetype = fatal-error
+SHOULD_LINEMERGE = True
+BREAK_ONLY_BEFORE_DATE = True
+```
+"""
+
